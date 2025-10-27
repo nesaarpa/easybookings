@@ -10,14 +10,14 @@ export function Footer() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <PhoneIcon className="w-5 h-5 text-blue-400" />
-                <a href="tel:8882916115" className="text-lg hover:text-blue-400 transition-colors">
+                <a href="tel:+18882916115" className="text-lg hover:text-blue-400 transition-colors">
                   (888) 291-6115
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <MailIcon className="w-5 h-5 text-blue-400" />
-                <a href="mailto:support@airline.com" className="hover:text-blue-400 transition-colors">
-                  support@airline.com
+                <a href="mailto:support@easybookings.us" className="hover:text-blue-400 transition-colors">
+                  support@easybookings.us
                 </a>
               </div>
               <div className="flex items-center gap-3">
@@ -59,14 +59,14 @@ export function Footer() {
               Call us now and let our travel experts help you find the perfect
               flight at the best price.
             </p>
-            <a href="tel:8882916115" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-lg transition-colors">
+            <a href="tel:+18882916115" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-lg transition-colors">
               Call (888) 291-6115
             </a>
           </div>
         </div>
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>© 2024 Airline Booking Service. All rights reserved.</p>
+          <p>© 2024 EasyBookings. All rights reserved.</p>
         </div>
       </div>
     </footer>;
