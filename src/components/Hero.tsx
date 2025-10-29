@@ -40,7 +40,7 @@ export function Hero({
           </div>
           <div className="mt-8 flex items-center justify-center gap-2 text-blue-100 drop-shadow-md">
             <ClockIcon className="w-5 h-5" />
-            <span>Available 24/7 for your convenience</span>
+            <span>Available 24/7 for your convenience</span> 
           </div>
         </div>
       </div>
