@@ -10,7 +10,7 @@ import { SEO } from './components/SEO';
 
 export function App() {
   // Easily customize the phone number here
-  const phoneNumber = '+1 (888) 291-6115';
+  const phoneNumber = '+1-888-291-6115';
   return (
     <>
       <SEO />
