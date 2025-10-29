@@ -34,7 +34,7 @@ export function HowItWorks({
               </div>
               <h3 className="text-xl font-bold mb-3">{step.title}</h3>
               <p className="text-blue-100">{step.description}</p>
-              {index === 0 && <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="mt-6 inline-block bg-white text-blue-600 px-6 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+              {index === 0 && <a href={`tel:+${phoneNumber.replace(/\D/g, '')}`} className="mt-6 inline-block bg-white text-blue-600 px-6 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
                   Start Here
                 </a>}
             </div>)}
@@ -44,7 +44,7 @@ export function HowItWorks({
             Ready to book your next flight? Our travel experts are waiting for
             your call.
           </p>
-          <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition-colors">
+          <a href={`tel:+${phoneNumber.replace(/\D/g, '')}`} className="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition-colors">
             Call {phoneNumber} Now
           </a>
         </div>
