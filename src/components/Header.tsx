@@ -43,7 +43,7 @@ export function Header({
               Destinations
             </a>
           </nav>
-          <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${isScrolled ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-white text-blue-600 hover:bg-blue-50'}`}>
+          <a href={`tel:+${phoneNumber.replace(/\D/g, '')}`} className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${isScrolled ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-white text-blue-600 hover:bg-blue-50'}`}>
             <PhoneIcon className="w-4 h-4" />
             <span className="font-medium">Call Now</span>
           </a>
