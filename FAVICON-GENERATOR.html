@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy Bookings - Favicon & OG Image Generator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    .card h2 {
+      color: #2563eb;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .preview-item {
+      text-align: center;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    .preview-item canvas {
+      max-width: 100%;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .preview-item p {
+      font-size: 0.875rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #1e40af;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .instructions {
+      background: #eff6ff;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #2563eb;
+      margin-bottom: 20px;
+    }
+    .instructions ol {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+    .instructions li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🛫 Easy Bookings</h1>
+      <p>Favicon & Social Media Image Generator</p>
+    </div>
+
+    <div class="card">
+      <h2>📋 Instructions</h2>
+      <div class="instructions">
+        <p><strong>Follow these steps to generate all required SEO images:</strong></p>
+        <ol>
+          <li>Click each "Download" button below to save the images</li>
+          <li>Save all images to your project's <code>public</code> folder</li>
+          <li>For best results, you can also use <a href="https://realfavicongenerator.net/" target="_blank" style="color: #2563eb; font-weight: bold;">RealFaviconGenerator.net</a></li>
+          <li>Test your SEO setup using Google's Rich Results Test</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🎨 Generated Favicons</h2>
+      <div class="preview-grid" id="faviconGrid"></div>
+    </div>
+
+    <div class="card">
+      <h2>📱 Social Media Image (OG Image)</h2>
+      <div class="preview-grid" id="ogImageGrid"></div>
+    </div>
+  </div>
+
+  <script>
+    // Generate airplane icon on canvas
+    function drawAirplane(canvas, size, includeText = false) {
+      const ctx = canvas.getContext('2d');
+      canvas.width = size;
+      canvas.height = size;
+
+      // Gradient background
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#2563eb');
+      gradient.addColorStop(1, '#1e40af');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, size, size);
+
+      // Draw airplane
+      ctx.fillStyle = 'white';
+      const scale = size / 100;
+      
+      ctx.beginPath();
+      ctx.moveTo(50 * scale, 25 * scale);
+      ctx.lineTo(75 * scale, 45 * scale);
+      ctx.lineTo(60 * scale, 45 * scale);
+      ctx.lineTo(60 * scale, 65 * scale);
+      ctx.lineTo(40 * scale, 65 * scale);
+      ctx.lineTo(40 * scale, 45 * scale);
+      ctx.lineTo(25 * scale, 45 * scale);
+      ctx.closePath();
+      ctx.fill();
+
+      // Draw circle (landing gear)
+      ctx.beginPath();
+      ctx.arc(50 * scale, 75 * scale, 3 * scale, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (includeText && size >= 128) {
+        ctx.font = `bold ${size * 0.12}px Arial`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('EB', size / 2, size * 0.85);
+      }
+    }
+
+    // Generate OG Image
+    function drawOGImage(canvas) {
+      const ctx = canvas.getContext('2d');
+      canvas.width = 1200;
+      canvas.height = 630;
+
+      // Gradient background
+      const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+      gradient.addColorStop(0, '#2563eb');
+      gradient.addColorStop(1, '#1e40af');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 1200, 630);
+
+      // Airplane icon (larger)
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+      ctx.beginPath();
+      ctx.moveTo(250, 150);
+      ctx.lineTo(450, 300);
+      ctx.lineTo(350, 300);
+      ctx.lineTo(350, 450);
+      ctx.lineTo(150, 450);
+      ctx.lineTo(150, 300);
+      ctx.lineTo(50, 300);
+      ctx.closePath();
+      ctx.fill();
+
+      // Text
+      ctx.fillStyle = 'white';
+      ctx.font = 'bold 80px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('Easy Bookings', 600, 250);
+
+      ctx.font = '40px Arial';
+      ctx.fillText('Book Cheap Flights by Phone', 600, 320);
+
+      ctx.font = 'bold 50px Arial';
+      ctx.fillText('☎ +1-800-FLY-NOW', 600, 400);
+
+      ctx.font = '30px Arial';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.fillText('Available 24/7 | Expert Travel Agents', 600, 470);
+
+      // Website URL
+      ctx.font = 'bold 35px Arial';
+      ctx.fillText('www.easybookings.us', 600, 550);
+    }
+
+    // Download canvas as image
+    function downloadCanvas(canvas, filename) {
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    // Generate favicons
+    const sizes = [
+      { size: 16, name: 'favicon-16x16.png' },
+      { size: 32, name: 'favicon-32x32.png' },
+      { size: 180, name: 'apple-touch-icon.png' },
+      { size: 192, name: 'android-chrome-192x192.png' },
+      { size: 512, name: 'android-chrome-512x512.png' }
+    ];
+
+    const faviconGrid = document.getElementById('faviconGrid');
+    sizes.forEach(({ size, name }) => {
+      const div = document.createElement('div');
+      div.className = 'preview-item';
+
+      const canvas = document.createElement('canvas');
+      drawAirplane(canvas, size, size >= 128);
+
+      const p = document.createElement('p');
+      p.textContent = `${size}x${size}`;
+
+      const btn = document.createElement('button');
+      btn.textContent = `Download ${name}`;
+      btn.onclick = () => downloadCanvas(canvas, name);
+
+      div.appendChild(canvas);
+      div.appendChild(p);
+      div.appendChild(btn);
+      faviconGrid.appendChild(div);
+    });
+
+    // Generate OG Image
+    const ogImageGrid = document.getElementById('ogImageGrid');
+    const ogDiv = document.createElement('div');
+    ogDiv.className = 'preview-item';
+    ogDiv.style.gridColumn = '1 / -1';
+
+    const ogCanvas = document.createElement('canvas');
+    drawOGImage(ogCanvas);
+
+    const ogP = document.createElement('p');
+    ogP.textContent = '1200x630 (Facebook, LinkedIn, Twitter)';
+
+    const ogBtn = document.createElement('button');
+    ogBtn.textContent = 'Download og-image.jpg';
+    ogBtn.onclick = () => {
+      const link = document.createElement('a');
+      link.download = 'og-image.jpg';
+      link.href = ogCanvas.toDataURL('image/jpeg', 0.95);
+      link.click();
+    };
+
+    const logoBtn = document.createElement('button');
+    logoBtn.textContent = 'Download logo.png (500x500)';
+    logoBtn.onclick = () => {
+      const logoCanvas = document.createElement('canvas');
+      drawAirplane(logoCanvas, 500, true);
+      downloadCanvas(logoCanvas, 'logo.png');
+    };
+
+    const btnGroup = document.createElement('div');
+    btnGroup.className = 'button-group';
+    btnGroup.appendChild(ogBtn);
+    btnGroup.appendChild(logoBtn);
+
+    ogDiv.appendChild(ogCanvas);
+    ogDiv.appendChild(ogP);
+    ogDiv.appendChild(btnGroup);
+    ogImageGrid.appendChild(ogDiv);
+  </script>
+</body>
+</html>

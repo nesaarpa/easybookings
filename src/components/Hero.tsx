@@ -1,53 +1,46 @@
 import React from 'react';
 import { PhoneIcon, ClockIcon } from 'lucide-react';
-export function Hero() {
-  return <div className="relative w-full h-screen">
+export function Hero({
+  phoneNumber
+}: {
+  phoneNumber: string;
+}) {
+  return <div className="w-full relative bg-gradient-to-br from-blue-600 to-blue-800 text-white pt-20 overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-      backgroundImage: 'url(https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80)'
-    }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 to-transparent"></div>
+      <div className="absolute inset-0 z-0" style={{
+      backgroundImage: "url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    }} role="img" aria-label="Airplane flying above clouds at sunset - Book cheap flights with Easy Bookings">
+        {/* Lighter overlay for better image visibility */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 to-blue-800/60" />
       </div>
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 max-w-4xl drop-shadow-lg">
-          Your Journey Begins With One Call
-        </h1>
-        <p className="text-xl md:text-2xl text-white mb-12 max-w-2xl drop-shadow-lg">
-          Expert flight booking assistance available 24/7. Get the best deals on
-          domestic and international flights.
-        </p>
-        {/* Main CTA */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 max-w-2xl w-full">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <PhoneIcon className="w-8 h-8 text-blue-600" />
-            <p className="text-gray-700 text-lg font-medium">
-              Call Now for Instant Booking
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg">
+            Book Your Flight with Just a Call
+          </h1>
+          <p className="text-xl sm:text-2xl mb-8 text-blue-100 drop-shadow-md">
+            Expert assistance for the best air ticket deals worldwide
+          </p>
+          <div className="bg-white text-gray-900 rounded-2xl p-8 max-w-2xl mx-auto shadow-2xl">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <PhoneIcon className="w-8 h-8 text-blue-600" />
+              <span className="text-3xl sm:text-4xl font-bold text-blue-600">
+                {phoneNumber}
+              </span>
+            </div>
+            <p className="text-lg text-gray-600 mb-6">
+              Call now to speak with our travel experts
             </p>
+            <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors">
+              Call Now to Book
+            </a>
           </div>
-          <a href="tel:8882916115" className="block text-5xl md:text-6xl font-bold text-blue-600 hover:text-blue-700 transition-colors mb-6">
-            (888) 291-6115
-          </a>
-          <div className="flex items-center justify-center gap-2 text-gray-600">
+          <div className="mt-8 flex items-center justify-center gap-2 text-blue-100 drop-shadow-md">
             <ClockIcon className="w-5 h-5" />
-            <span className="text-sm">
-              Available 24/7 • Speak to a Travel Expert Now
-            </span>
-          </div>
-        </div>
-        {/* Trust Badges */}
-        <div className="mt-12 flex flex-wrap justify-center gap-8 text-white text-sm drop-shadow-lg">
-          <div className="flex flex-col items-center">
-            <p className="text-3xl font-bold">10,000+</p>
-            <p>Happy Travelers</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <p className="text-3xl font-bold">24/7</p>
-            <p>Customer Support</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <p className="text-3xl font-bold">500+</p>
-            <p>Airlines Partners</p>
+            <span>Available 24/7 for your convenience</span>
           </div>
         </div>
       </div>

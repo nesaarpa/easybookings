@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" fill="url(#bgGradient)" rx="15"/>
+  <!-- Airplane shape -->
+  <g fill="white">
+    <path d="M50 25 L75 45 L60 45 L60 65 L40 65 L40 45 L25 45 Z" opacity="0.95"/>
+    <circle cx="50" cy="75" r="3"/>
+    <!-- Wing details -->
+    <rect x="35" y="42" width="30" height="3" rx="1.5"/>
+  </g>
+  <!-- "EB" text alternative -->
+  <text x="50" y="85" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle" opacity="0.9">EB</text>
+</svg>

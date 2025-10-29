@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy Bookings - Image Generator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+    .header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .card h2 {
+      color: #2563eb;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .preview-item {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      border: 2px solid #e5e7eb;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .preview-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .preview-item canvas {
+      max-width: 100%;
+      border: 3px solid #2563eb;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .preview-item h3 {
+      font-size: 1.1rem;
+      color: #1f2937;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .preview-item p {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-bottom: 15px;
+    }
+    button {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    button:hover {
+      background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+    .instructions {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      padding: 30px;
+      border-radius: 12px;
+      border-left: 6px solid #2563eb;
+      margin-bottom: 30px;
+    }
+    .instructions h3 {
+      color: #1e40af;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+    .instructions ol {
+      margin-left: 25px;
+      margin-top: 15px;
+    }
+    .instructions li {
+      margin-bottom: 12px;
+      line-height: 1.8;
+      color: #374151;
+    }
+    .instructions code {
+      background: white;
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: #2563eb;
+      font-weight: 600;
+    }
+    .status {
+      margin-top: 30px;
+      padding: 20px;
+      background: #10b981;
+      color: white;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 600;
+      display: none;
+    }
+    .download-all {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .download-all button {
+      font-size: 1.2rem;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+    .download-all button:hover {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>✈️ Easy Bookings Image Generator</h1>
+      <p>Generate all required SEO images with one click</p>
+    </div>
+
+    <div class="card">
+      <h2>📋 Quick Instructions</h2>
+      <div class="instructions">
+        <h3>How to use:</h3>
+        <ol>
+          <li>Click <strong>"Download All Images"</strong> button below to get all images at once</li>
+          <li>OR click individual download buttons for specific images</li>
+          <li>Save all images to your <code>public</code> folder</li>
+          <li>Run <code>npm run build</code> and deploy</li>
+          <li>Done! Your SEO images are ready 🎉</li>
+        </ol>
+      </div>
+      
+      <div class="download-all">
+        <button onclick="downloadAllImages()">📥 Download All Images (Recommended)</button>
+      </div>
+      
+      <div id="status" class="status"></div>
+    </div>
+
+    <div class="card">
+      <h2>🎨 Favicon Images</h2>
+      <div class="preview-grid" id="faviconGrid"></div>
+    </div>
+
+    <div class="card">
+      <h2>🏢 Logo & Social Media Images</h2>
+      <div class="preview-grid" id="mainImagesGrid"></div>
+    </div>
+  </div>
+
+  <script>
+    // Canvas drawing functions
+    function drawAirplane(canvas, size, showText = false) {
+      const ctx = canvas.getContext('2d');
+      canvas.width = size;
+      canvas.height = size;
+
+      // Gradient background
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#2563eb');
+      gradient.addColorStop(1, '#1e40af');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, size, size);
+
+      // Scale factor
+      const scale = size / 500;
+
+      // Draw airplane
+      ctx.fillStyle = 'white';
+      ctx.globalAlpha = 0.95;
+      
+      // Main body
+      ctx.beginPath();
+      ctx.moveTo(250 * scale, 120 * scale);
+      ctx.lineTo(375 * scale, 230 * scale);
+      ctx.lineTo(300 * scale, 230 * scale);
+      ctx.lineTo(300 * scale, 330 * scale);
+      ctx.lineTo(200 * scale, 330 * scale);
+      ctx.lineTo(200 * scale, 230 * scale);
+      ctx.lineTo(125 * scale, 230 * scale);
+      ctx.closePath();
+      ctx.fill();
+
+      // Landing gear
+      ctx.beginPath();
+      ctx.arc(250 * scale, 380 * scale, 15 * scale, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.beginPath();
+      ctx.arc(220 * scale, 370 * scale, 10 * scale, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.beginPath();
+      ctx.arc(280 * scale, 370 * scale, 10 * scale, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Wing details
+      ctx.beginPath();
+      ctx.roundRect(175 * scale, 220 * scale, 150 * scale, 15 * scale, 7.5 * scale);
+      ctx.fill();
+
+      // Tail fin
+      ctx.beginPath();
+      ctx.moveTo(230 * scale, 120 * scale);
+      ctx.lineTo(250 * scale, 80 * scale);
+      ctx.lineTo(270 * scale, 120 * scale);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.globalAlpha = 1;
+
+      // Text
+      if (showText) {
+        ctx.font = `bold ${48 * scale}px Arial`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = 'white';
+        ctx.globalAlpha = 0.95;
+        ctx.fillText('Easy Bookings', 250 * scale, 440 * scale);
+      }
+    }
+
+    function drawOGImage(canvas) {
+      const ctx = canvas.getContext('2d');
+      canvas.width = 1200;
+      canvas.height = 630;
+
+      // Gradient background
+      const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+      gradient.addColorStop(0, '#2563eb');
+      gradient.addColorStop(0.5, '#1e40af');
+      gradient.addColorStop(1, '#1e3a8a');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 1200, 630);
+
+      // Decorative dots pattern
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+      for (let x = 20; x < 1200; x += 40) {
+        for (let y = 20; y < 630; y += 40) {
+          ctx.beginPath();
+          ctx.arc(x, y, 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Background airplane shapes
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.save();
+      ctx.translate(150, 175);
+      ctx.rotate(-0.26);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(100, 80);
+      ctx.lineTo(50, 80);
+      ctx.lineTo(50, 150);
+      ctx.lineTo(-50, 150);
+      ctx.lineTo(-50, 80);
+      ctx.lineTo(-100, 80);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+
+      // Main airplane icon
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+      ctx.beginPath();
+      ctx.moveTo(225, 230);
+      ctx.lineTo(325, 310);
+      ctx.lineTo(280, 310);
+      ctx.lineTo(280, 380);
+      ctx.lineTo(170, 380);
+      ctx.lineTo(170, 310);
+      ctx.lineTo(125, 310);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(225, 410, 10, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Main content
+      ctx.fillStyle = 'white';
+      
+      // Company name
+      ctx.font = 'bold 90px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('Easy Bookings', 600, 180);
+
+      // Tagline
+      ctx.font = '42px Arial';
+      ctx.globalAlpha = 0.95;
+      ctx.fillText('Book Cheap Flights by Phone', 600, 250);
+      ctx.globalAlpha = 1;
+
+      // Divider
+      ctx.globalAlpha = 0.5;
+      ctx.fillRect(400, 280, 400, 3);
+      ctx.globalAlpha = 1;
+
+      // Phone icon
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.arc(480, 360, 30, 0, Math.PI * 2);
+      ctx.stroke();
+      
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      ctx.roundRect(470, 350, 20, 25, 5);
+      ctx.fill();
+
+      // Phone number
+      ctx.font = 'bold 52px Arial';
+      ctx.textAlign = 'left';
+      ctx.fillText('+1-800-FLY-NOW', 530, 375);
+
+      // Features
+      ctx.font = '32px Arial';
+      ctx.textAlign = 'center';
+      ctx.globalAlpha = 0.9;
+      ctx.fillText('✓ Available 24/7  •  ✓ Expert Agents  •  ✓ Best Prices', 600, 450);
+      ctx.globalAlpha = 1;
+
+      // Website
+      ctx.font = 'bold 38px Arial';
+      ctx.fillText('www.easybookings.us', 600, 550);
+    }
+
+    function downloadCanvas(canvas, filename) {
+      const link = document.createElement('a');
+      link.download = filename;
+      const ext = filename.split('.').pop().toLowerCase();
+      if (ext === 'jpg' || ext === 'jpeg') {
+        link.href = canvas.toDataURL('image/jpeg', 0.95);
+      } else {
+        link.href = canvas.toDataURL('image/png');
+      }
+      link.click();
+    }
+
+    function showStatus(message) {
+      const status = document.getElementById('status');
+      status.textContent = message;
+      status.style.display = 'block';
+      setTimeout(() => {
+        status.style.display = 'none';
+      }, 3000);
+    }
+
+    async function downloadAllImages() {
+      const allCanvases = document.querySelectorAll('canvas');
+      const allButtons = Array.from(document.querySelectorAll('button[data-filename]'));
+      
+      showStatus('⏳ Downloading all images...');
+      
+      for (let i = 0; i < allButtons.length; i++) {
+        await new Promise(resolve => setTimeout(resolve, 200));
+        allButtons[i].click();
+      }
+      
+      showStatus('✅ All images downloaded successfully!');
+    }
+
+    // Generate favicons
+    const faviconSizes = [
+      { size: 16, name: 'favicon-16x16.png', desc: 'Browser tab icon' },
+      { size: 32, name: 'favicon-32x32.png', desc: 'Browser tab icon' },
+      { size: 180, name: 'apple-touch-icon.png', desc: 'iOS home screen' },
+      { size: 192, name: 'android-chrome-192x192.png', desc: 'Android icon' },
+      { size: 512, name: 'android-chrome-512x512.png', desc: 'Android splash' }
+    ];
+
+    const faviconGrid = document.getElementById('faviconGrid');
+    faviconSizes.forEach(({ size, name, desc }) => {
+      const div = document.createElement('div');
+      div.className = 'preview-item';
+
+      const h3 = document.createElement('h3');
+      h3.textContent = name;
+
+      const canvas = document.createElement('canvas');
+      drawAirplane(canvas, size, size >= 500);
+
+      const p = document.createElement('p');
+      p.textContent = `${size}×${size}px - ${desc}`;
+
+      const btn = document.createElement('button');
+      btn.textContent = `📥 Download`;
+      btn.setAttribute('data-filename', name);
+      btn.onclick = () => {
+        downloadCanvas(canvas, name);
+        showStatus(`✓ Downloaded ${name}`);
+      };
+
+      div.appendChild(h3);
+      div.appendChild(canvas);
+      div.appendChild(p);
+      div.appendChild(btn);
+      faviconGrid.appendChild(div);
+    });
+
+    // Generate main images
+    const mainImages = [
+      { 
+        size: 500, 
+        name: 'logo.png', 
+        desc: 'Company logo for schema',
+        type: 'logo'
+      },
+      { 
+        size: 1200, 
+        name: 'og-image.jpg', 
+        desc: 'Social media sharing image',
+        type: 'og'
+      }
+    ];
+
+    const mainImagesGrid = document.getElementById('mainImagesGrid');
+    mainImages.forEach(({ size, name, desc, type }) => {
+      const div = document.createElement('div');
+      div.className = 'preview-item';
+
+      const h3 = document.createElement('h3');
+      h3.textContent = name;
+
+      const canvas = document.createElement('canvas');
+      if (type === 'logo') {
+        drawAirplane(canvas, size, true);
+      } else {
+        drawOGImage(canvas);
+      }
+
+      const p = document.createElement('p');
+      if (type === 'og') {
+        p.textContent = `1200×630px - ${desc}`;
+      } else {
+        p.textContent = `${size}×${size}px - ${desc}`;
+      }
+
+      const btn = document.createElement('button');
+      btn.textContent = `📥 Download`;
+      btn.setAttribute('data-filename', name);
+      btn.onclick = () => {
+        downloadCanvas(canvas, name);
+        showStatus(`✓ Downloaded ${name}`);
+      };
+
+      div.appendChild(h3);
+      div.appendChild(canvas);
+      div.appendChild(p);
+      div.appendChild(btn);
+      mainImagesGrid.appendChild(div);
+    });
+
+    // Polyfill for roundRect if not available
+    if (!CanvasRenderingContext2D.prototype.roundRect) {
+      CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+        this.beginPath();
+        this.moveTo(x + r, y);
+        this.lineTo(x + w - r, y);
+        this.quadraticCurveTo(x + w, y, x + w, y + r);
+        this.lineTo(x + w, y + h - r);
+        this.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        this.lineTo(x + r, y + h);
+        this.quadraticCurveTo(x, y + h, x, y + h - r);
+        this.lineTo(x, y + r);
+        this.quadraticCurveTo(x, y, x + r, y);
+        this.closePath();
+      };
+    }
+  </script>
+</body>
+</html>

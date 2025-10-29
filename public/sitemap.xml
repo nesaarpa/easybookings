@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://www.easybookings.us/</loc>
+    <lastmod>2025-10-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.easybookings.us/og-image.jpg</image:loc>
+      <image:title>Easy Bookings - Flight Booking Service</image:title>
+      <image:caption>Book cheap flights worldwide with 24/7 expert assistance</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Features Section -->
+  <url>
+    <loc>https://www.easybookings.us/#features</loc>
+    <lastmod>2025-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Destinations Section -->
+  <url>
+    <loc>https://www.easybookings.us/#destinations</loc>
+    <lastmod>2025-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+</urlset>
