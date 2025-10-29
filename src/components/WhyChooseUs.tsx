@@ -36,7 +36,7 @@ export function WhyChooseUs({
             </p>
             <div className="bg-blue-600 text-white rounded-xl p-6 text-center">
               <p className="text-sm mb-2">Call us now at</p>
-              <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="text-3xl font-bold block mb-4">
+              <a href={`tel:+${phoneNumber.replace(/\D/g, '')}`} className="text-3xl font-bold block mb-4">
                 {phoneNumber}
               </a>
               <p className="text-sm text-blue-100">
