@@ -21,14 +21,14 @@ export function Footer({
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <PhoneIcon className="w-5 h-5 text-blue-400" />
-                <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="hover:text-blue-400 transition-colors">
+                <a href={`tel:+${phoneNumber.replace(/\D/g, '')}`} className="hover:text-blue-400 transition-colors">
                   {phoneNumber}
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <MailIcon className="w-5 h-5 text-blue-400" />
-                <a href="mailto:booking@airtickets.com" className="hover:text-blue-400 transition-colors">
-                  booking@airtickets.com
+                <a href="mailto:contact@easybookings.us" className="hover:text-blue-400 transition-colors">
+                  contact@easybookings.us
                 </a>
               </div>
               <div className="flex items-start gap-3">
