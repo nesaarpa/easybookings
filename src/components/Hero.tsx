@@ -34,7 +34,7 @@ export function Hero({
             <p className="text-lg text-gray-600 mb-6">
               Call now to speak with our travel experts
             </p>
-            <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors">
+            <a href={`tel:+${phoneNumber.replace(/\D/g, '')}`} className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors">
               Call Now to Book
             </a>
           </div>
