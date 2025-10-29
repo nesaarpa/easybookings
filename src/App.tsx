@@ -10,7 +10,7 @@ import { SEO } from './components/SEO';
 
 export function App() {
   // Easily customize the phone number here
-  const phoneNumber = '+1-800-FLY-NOW';
+  const phoneNumber = '+1 (888) 291-6115';
   return (
     <>
       <SEO />
